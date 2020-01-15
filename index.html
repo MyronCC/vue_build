@@ -20,8 +20,8 @@
         <ul>
           <!-- avatar / user icon-->
           <!-- if the user has an avatar, show it -->
-          <li>
-            <img src="" alt="user avatar" class="u-avatar">
+          <li v-if="user.avatar">
+            <img :src="‘images/’ + user.avatar" alt="user avatar" class="u-avatar">
           </li>
 
           <!-- else show this -->
@@ -32,14 +32,14 @@
 
           <!-- settings icon / functionality -->
           <!-- if our user object has admin rights, then show this -->
-          <li>
+          <li v-if="user.isAdmin">
             <i class="fas fa-cog" role="button"></i>
           </li>
           <!-- end user settings -->
 
           <!-- log in / log out -->
           <li>
-            <i class="fas fa-power-off u-login" role="button"></i>
+            <i @click="userLogin" class="fas fa-power-off u-login" role="button" :class="{ 'logged-in' : user.isLoggedIn }"></i>
           </li>
         </ul>
       </nav>
@@ -69,8 +69,8 @@
   <footer>
     <p>All content &copy; 2020 Netflix, Marvel and Disney, so don't tell them we stole it</p>
   </footer>
-
-  <script src="js/main.js"></script>
+  
+  <script defer src="js/main.js"></script>
 </body>
 
 </html>
